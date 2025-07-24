@@ -17,3 +17,10 @@
 -play with routes and route extensions ex:/hello,/,/hello/2
 -order of the routes matter
 -Install postman app and make workspace/collection -->test API call
+
+-?,+,*  which means after advanced routings
+-in express 4 the advanced routings are loosely interpreted but in express 5 versions we must and should need to use regular expressions.
+-explore routing and use of +,*,?,() in routes
+-use of regex in routes /a/,/.*fly$/
+-Reading the query params in the routes
+-Reading the dynamic routes
