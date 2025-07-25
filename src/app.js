@@ -3,6 +3,13 @@
 const express=require("express");
 const app=express();
 
+
+app.get("/user/:id/:name",(req,res)=>{
+    console.log(req.params);
+    let {id,name}=req.params
+    res.send(`<h1>parameters passed successfully id=${id},name=${name}</h1>`)
+})
+
 //This will only handle GET call to /user
 app.get("/user/:userid",(req,res)=>{
     // console.log(req.query);
@@ -10,10 +17,17 @@ app.get("/user/:userid",(req,res)=>{
     res.send({firstName:"Amaresh",lastName:"Vutukuri"})
 })
 
-app.get("/user",(req,res)=>{
-    console.log(req.query);
-    res.send("reading the query");
-})
+// app.get("/user",(req,res)=>{
+//     console.log(req.query);
+   
+//     let {q}=req.query;
+//      if(!q){
+//         res.send(`<h1>nothing searched</h1>`)
+//     }
+//     res.send(`<h1>these are the search results for the query:${q}</h1>`);
+// })
+
+
 
 app.get("/user",(req,res)=>{
     console.log(req.query);
