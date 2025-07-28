@@ -74,29 +74,44 @@ const app=express();
 // })
 
 //even we can wrap these 5routes in an array
-app.use("/user",
-    (req,res,next)=>{
-    next();
-    // res.send("listening on server1");
+// app.use("/user",
+//     (req,res,next)=>{
+//     next();
+//     // res.send("listening on server1");
     
-    },
-    (req,res,next)=>{
-        next();
-        // res.send("listening on server2")
-    },
-    (req,res,next)=>{
-        next();
-        // res.send("server listening on server3")
-    },
-    (req,res,next)=>{
-        next()
-        // res.send("server listening on server4")
-    },
-    (req,res,)=>{
+//     },
+//     (req,res,next)=>{
+//         next();
+//         // res.send("listening on server2")
+//     },
+//     (req,res,next)=>{
+//         next();
+//         // res.send("server listening on server3")
+//     },
+//     (req,res,next)=>{
+//         next()
+//         // res.send("server listening on server4")
+//     },
+//     (req,res,)=>{
         
-        res.send("server listening on server5")
-    }
-)
+//         res.send("server listening on server5")
+//     }
+// )
+
+const{adminAuth,userAuth}=require('./middlewares/auth')
+
+app.use("/admin",adminAuth)
+
+app.use("/user",userAuth,(req,res)=>{
+    res.send("user data is authenticated")
+})
+app.get("/admin/getAllData",(req,res)=>{
+    res.send("All Data Sent");
+})
+
+app.get("/admin/deleteUSer",(req,res)=>{
+    res.send("deleted a user")
+})
 
 app.listen(7777,()=>{
 console.log("server successfully built on port 7777")

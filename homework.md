@@ -29,5 +29,14 @@
 -next()
 -next function and errors along with the res.send()
 -app.use("/route",rH,[rH2,rH3],rH4,rH5);#handling multiple routes using array
+-what is a middleware and why we need it
+-how express js basiclly handles requests behind the scenes
+-Difference between app.use and app.all
+-write a dummy auth middleware for admin
+-write a dummy auth middleware for all user routes,except /user/login
 
-
+express handles route handlers in a very funny way that if u pass 
+-->2 parameters then it is req,res
+-->3 parameters then it is req,res,next
+-->4 parameters then it is err,req,res,next
+"order is important here" if u pass next in 4 nad err at 4 tehn express will trear next as err and err as next
