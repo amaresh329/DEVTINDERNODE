@@ -98,19 +98,34 @@ const app=express();
 //     }
 // )
 
-const{adminAuth,userAuth}=require('./middlewares/auth')
+// const{adminAuth,userAuth}=require('./middlewares/auth')
 
-app.use("/admin",adminAuth)
+// app.use("/admin",adminAuth)
 
-app.use("/user",userAuth,(req,res)=>{
-    res.send("user data is authenticated")
+// app.use("/user",userAuth,(req,res)=>{
+//     res.send("user data is authenticated")
+// })
+// app.get("/admin/getAllData",(req,res)=>{
+//     res.send("All Data Sent");
+// })
+
+// app.get("/admin/deleteUSer",(req,res)=>{
+//     res.send("deleted a user")
+// })
+
+app.get("/getUserData",(req,res)=>{
+     try{
+         throw new Error("fdwfaf");
+         res.status(500).send("userdata send")
+    }catch(err){
+        res.status(500).send("Something went wrong please contact customer support");
+    }
+    
 })
-app.get("/admin/getAllData",(req,res)=>{
-    res.send("All Data Sent");
-})
-
-app.get("/admin/deleteUSer",(req,res)=>{
-    res.send("deleted a user")
+app.use("/",(err,req,res,next)=>{
+   if(err){
+    res.status(500).send("something went wrong")
+   }
 })
 
 app.listen(7777,()=>{

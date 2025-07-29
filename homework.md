@@ -40,3 +40,10 @@ express handles route handlers in a very funny way that if u pass
 -->3 parameters then it is req,res,next
 -->4 parameters then it is err,req,res,next
 "order is important here" if u pass next in 4 nad err at 4 tehn express will trear next as err and err as next
+
+-error handling using app.use((err,req,res,next)={})
+
+-create a free cluster on MongoDB official website(Mongo Atlas)
+-Install mongoose library
+-connect your application to the Database "connection-url"/devTinder
+-call the connectDB function and connect to database before starting application on 7777
