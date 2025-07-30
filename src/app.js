@@ -1,7 +1,6 @@
 const express=require("express");
 const app=express();
 
-
 // app.use("/user",
 //     (req,res,next)=>{
 //     next();
@@ -113,21 +112,45 @@ const app=express();
 //     res.send("deleted a user")
 // })
 
-app.get("/getUserData",(req,res)=>{
-     try{
-         throw new Error("fdwfaf");
-         res.status(500).send("userdata send")
-    }catch(err){
-        res.status(500).send("Something went wrong please contact customer support");
-    }
+// app.get("/getUserData",(req,res)=>{
+//      try{
+//          throw new Error("fdwfaf");
+//          res.status(500).send("userdata send")
+//     }catch(err){
+//         res.status(500).send("Something went wrong please contact customer support");
+//     }
     
-})
-app.use("/",(err,req,res,next)=>{
-   if(err){
-    res.status(500).send("something went wrong")
+// })
+// app.use("/",(err,req,res,next)=>{
+//    if(err){
+//     res.status(500).send("something went wrong")
+//    }
+// })
+const User=require('./models/user')
+
+app.post("/user",async(req,res)=>{
+   const user=new User({
+      firstName:"Rajesh",
+      lastName:"Bandaru",
+      emailId:"sandeepjavvaji9848@gmail.com",
+      password:"Sandeep@123"
+   });
+   try{
+      await user.save();
+      res.send("user data stored successfully")
+   }catch(err){
+      res.status(400).send("Error saving the user:"+err.message)
    }
 })
 
-app.listen(7777,()=>{
-console.log("server successfully built on port 7777")
+const connectDB=require('./config/database')
+connectDB()
+ .then(()=>{
+    console.log("connection established successfully");
+     app.listen(7777,()=>{
+     console.log("server successfully built on port 7777")
 })
+ })
+ .catch((err)=>{
+    console.error("Database cannot be connected");
+ })

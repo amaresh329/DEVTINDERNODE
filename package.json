@@ -4,8 +4,8 @@
   "description": "dev tinder is an application which connects the developers across the globe",
   "main": "index.js",
   "scripts": {
-    "start":"node src/app.js",
-    "dev":"nodemon src/app.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "keywords": [
     "javascript",
@@ -14,6 +14,7 @@
   "author": "Vutukuri Amaresh",
   "license": "ISC",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mongoose": "^8.16.5"
   }
 }

@@ -47,3 +47,6 @@ express handles route handlers in a very funny way that if u pass
 -Install mongoose library
 -connect your application to the Database "connection-url"/devTinder
 -call the connectDB function and connect to database before starting application on 7777
+-create a userSchema & user Model
+-create POST /signup API to add data to database
+-push some documents using API calls from postman
