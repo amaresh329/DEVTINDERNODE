@@ -50,3 +50,8 @@ express handles route handlers in a very funny way that if u pass
 -create a userSchema & user Model
 -create POST /signup API to add data to database
 -push some documents using API calls from postman
+-Error handling using try,catch
+
+-JSobject vs JSON(differnce)
+-Add the express.json middleware to your app
+-Make your signup API dynamic to receive data from the end user.

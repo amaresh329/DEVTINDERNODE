@@ -127,14 +127,15 @@ const app=express();
 //    }
 // })
 const User=require('./models/user')
-
+app.use(express.json());//A middleware to read the json data which is coming from body in postman
 app.post("/user",async(req,res)=>{
-   const user=new User({
-      firstName:"Rajesh",
-      lastName:"Bandaru",
-      emailId:"sandeepjavvaji9848@gmail.com",
-      password:"Sandeep@123"
-   });
+   // const user=new User({
+   //    firstName:"Rajesh",
+   //    lastName:"Bandaru",
+   //    emailId:"sandeepjavvaji9848@gmail.com",
+   //    password:"Sandeep@123"
+   // });
+   const user=new User(req.body);//which makes our userdata dynamic
    try{
       await user.save();
       res.send("user data stored successfully")
