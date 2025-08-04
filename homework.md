@@ -55,3 +55,8 @@ express handles route handlers in a very funny way that if u pass
 -JSobject vs JSON(differnce)
 -Add the express.json middleware to your app
 -Make your signup API dynamic to receive data from the end user.
+-user.findOne with duplicate emailIds which object will returns first
+-API-get usr by email
+-API-Feed API-GET/feed-get all the usrs from the database
+-API-Get user by Id
+-create a delete API user call

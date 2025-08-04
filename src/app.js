@@ -127,8 +127,10 @@ const app=express();
 //    }
 // })
 const User=require('./models/user')
-app.use(express.json());//A middleware to read the json data which is coming from body in postman
-app.post("/user",async(req,res)=>{
+app.use(express.json()); //A middleware to read the json data which is coming from body in postman
+
+
+app.post("/signup",async(req,res)=>{
    // const user=new User({
    //    firstName:"Rajesh",
    //    lastName:"Bandaru",
@@ -144,6 +146,40 @@ app.post("/user",async(req,res)=>{
    }
 })
 
+//get user by email
+app.get("/user",async(req,res)=>{
+   const userEmail=req.body.emailId;
+   console.log(userEmail);
+   try{
+      const user=await User.findOne({emailId:userEmail});
+      if(!user){
+         res.status(400).send("user does not exist")
+      }
+      else{
+         res.status(200).send(user);
+      }
+      
+   //  const users=await User.find({emailId:userEmail})
+   //  if(users.length===0){
+   //     res.status(400).send("user does not exist")
+   //  }else{
+   //    res.status(200).send(users);
+   //  }  
+   }catch(err){
+     res.status(400).send("Something went wrong")
+   }
+})
+
+//Feed API-Get/feed-get all the users from the database
+app.get("/feed",async(req,res)=>{
+
+   try{
+    const users=await User.find({})
+    res.send(users)
+   }catch(err){
+    res.status(400).send("Something went wrong")
+   }
+})
 const connectDB=require('./config/database')
 connectDB()
  .then(()=>{
