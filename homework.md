@@ -41,22 +41,26 @@ express handles route handlers in a very funny way that if u pass
 -->4 parameters then it is err,req,res,next
 "order is important here" if u pass next in 4 nad err at 4 tehn express will trear next as err and err as next
 
--error handling using app.use((err,req,res,next)={})
+-->error handling using app.use((err,req,res,next)={})
 
--create a free cluster on MongoDB official website(Mongo Atlas)
--Install mongoose library
--connect your application to the Database "connection-url"/devTinder
--call the connectDB function and connect to database before starting application on 7777
--create a userSchema & user Model
--create POST /signup API to add data to database
--push some documents using API calls from postman
--Error handling using try,catch
+-->create a free cluster on MongoDB official website(Mongo Atlas)
+-->Install mongoose library
+-->connect your application to the Database "connection-url"/devTinder
+-->call the connectDB function and connect to database before starting application on 7777
+-->create a userSchema & user Model
+-->create POST /signup API to add data to database
+-->push some documents using API calls from postman
+-->Error handling using try,catch
 
--JSobject vs JSON(differnce)
--Add the express.json middleware to your app
--Make your signup API dynamic to receive data from the end user.
--user.findOne with duplicate emailIds which object will returns first
--API-get usr by email
--API-Feed API-GET/feed-get all the usrs from the database
--API-Get user by Id
--create a delete API user call
+-->JSobject vs JSON(differnce)
+-->Add the express.json middleware to your app
+-->Make your signup API dynamic to receive data from the end user.
+-->user.findOne with duplicate emailIds which object will returns first
+-->API-get usr by email
+-->API-Feed API-GET/feed-get all the usrs from the database
+-->API-Get user by Id
+-->create a delete API user call
+-->API-update a user
+-->explore the monoose documentation for model methods
+-->what are options in a Model.findOneAndUpdate method, explore more about it
+-->API-update the user with emailId

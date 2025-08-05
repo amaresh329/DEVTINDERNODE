@@ -132,10 +132,10 @@ app.use(express.json()); //A middleware to read the json data which is coming fr
 
 app.post("/signup",async(req,res)=>{
    // const user=new User({
-   //    firstName:"Rajesh",
-   //    lastName:"Bandaru",
-   //    emailId:"sandeepjavvaji9848@gmail.com",
-   //    password:"Sandeep@123"
+      // firstName:"Rajesh",
+      // lastName:"Bandaru",
+      // emailId:"sandeepjavvaji9848@gmail.com",
+      // password:"Sandeep@123"
    // });
    const user=new User(req.body);//which makes our userdata dynamic
    try{
@@ -178,6 +178,46 @@ app.get("/feed",async(req,res)=>{
     res.send(users)
    }catch(err){
     res.status(400).send("Something went wrong")
+   }
+})
+
+//delete an user
+app.delete("/user",async(req,res)=>{
+   const userId=req.body.userId;
+   try{
+      await User.findOneAndDelete({_id:userId});
+      res.status(200).send("user data deleted successfully")
+   }catch(err){
+      res.status(400).send("Something Went Wrong")
+   }
+})
+
+//update data of the user
+// app.patch("/user",async(req,res)=>{
+//    const userId=req.body.userId;
+//    const data=req.body;
+//    console.log(data);
+//    try{
+//       const user=await new User.findByIdAndUpdate(userId,data);
+//       console.log(user);
+//       res.send("user updated successfully")
+//    }
+//    catch(err){
+//       res.status(400).send("Something went Wrong")
+//    }
+// })
+
+app.patch("/pookie",async(req,res)=>{
+   const userId=req.body.userId;
+   const data=req.body;
+   try{
+      const user=await User.findByIdAndUpdate(userId, data, { new: true });   // 'new: true' returns the updated document
+      if (!user) {
+         return res.status(404).send("User not found");
+      }  
+      res.status(200).send(user);
+   } catch (err) {
+        res.status(400).send("Something went wrong: " + err.message);
    }
 })
 const connectDB=require('./config/database')
