@@ -64,3 +64,7 @@ express handles route handlers in a very funny way that if u pass
 -->explore the monoose documentation for model methods
 -->what are options in a Model.findOneAndUpdate method, explore more about it
 -->API-update the user with emailId
+
+
+
+-->adding validations to teh user schema

@@ -126,9 +126,9 @@ const app=express();
 //     res.status(500).send("something went wrong")
 //    }
 // })
+
 const User=require('./models/user')
 app.use(express.json()); //A middleware to read the json data which is coming from body in postman
-
 
 app.post("/signup",async(req,res)=>{
    // const user=new User({
@@ -192,33 +192,8 @@ app.delete("/user",async(req,res)=>{
    }
 })
 
-//update data of the user
-// app.patch("/user",async(req,res)=>{
-//    const userId=req.body._id;
-//    const data=req.body;
-//    console.log(data);
-//    try{
-//       const user=await User.findByIdAndUpdate(userId,data);
-//       console.log(user);
-//       res.send("user updated successfully")
-//    }
-//    catch(err){
-//       res.status(400).send("Something went Wrong")
-//    }
-// })
 
-// app.patch("/pookie",async(req,res)=>{
-//    const userId=req.body._id;
-//    const data=req.body;
-//    try{
-//       const user=await User.findByIdAndUpdate(userId, data);   // 'new: true' returns the updated document
-      
-//       res.status(200).send("user updated successfully: ");
-//    } catch (err) {
-//         res.status(400).send("Something went wrong: " + err.message);
-//    }
-// })
-
+//update an user
 app.patch("/user",async(req,res)=>{
    const userId=req.body._id;
    const data=req.body;
@@ -229,6 +204,18 @@ app.patch("/user",async(req,res)=>{
       res.status(400).send("Something went wrong: " + err.message);
    }
 })
+
+app.patch("/user",async(req,res)=>{
+   const emailId=req.body.emailId;
+   const data=req.body; 
+const user=await User.findOneAndUpdate({emailId:emailId}, data, { new: true });   // 'new: true' returns the updated document
+   if(!user){
+      res.status(400).send("user does not exist")
+   }else{
+      res.status(200).send("user updated successfully: " + user);
+   }
+}) 
+
 const connectDB=require('./config/database')
 connectDB()
  .then(()=>{
