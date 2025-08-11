@@ -197,26 +197,31 @@ app.delete("/user",async(req,res)=>{
 app.patch("/user",async(req,res)=>{
    const userId=req.body._id;
    const data=req.body;
+   console.log(data);
    try{
-      const user=await User.findByIdAndUpdate(userId, data, { new: true });   // 'new: true' returns the updated document
+      const user=await User.findByIdAndUpdate(userId, data,{
+         new: true, // returns the updated document
+         runValidators: true // runs schema validations on the update
+      });
       res.status(200).send("user updated successfully: ");     
    }catch(err){
       res.status(400).send("Something went wrong: " + err.message);
    }
 })
 
-app.patch("/user",async(req,res)=>{
-   const emailId=req.body.emailId;
-   const data=req.body; 
-const user=await User.findOneAndUpdate({emailId:emailId}, data, { new: true });   // 'new: true' returns the updated document
-   if(!user){
-      res.status(400).send("user does not exist")
-   }else{
-      res.status(200).send("user updated successfully: " + user);
-   }
-}) 
+// app.patch("/user",async(req,res)=>{
+//    const emailId=req.body.emailId;
+//    const data=req.body; 
+// const user=await User.findOneAndUpdate({emailId:emailId}, data, { new: true });   // 'new: true' returns the updated document
+//    if(!user){
+//       res.status(400).send("user does not exist")
+//    }else{
+//       res.status(200).send("user updated successfully: " + user);
+//    }
+// }) 
 
-const connectDB=require('./config/database')
+const connectDB=require('./config/database');
+const { SchemaTypeOptions } = require("mongoose");
 connectDB()
  .then(()=>{
     console.log("connection established successfully");

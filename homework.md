@@ -67,4 +67,9 @@ express handles route handlers in a very funny way that if u pass
 
 
 
--->adding validations to teh user schema
+-->adding validations to the user schema
+-->Explore schematype options from the documentation
+-->Add Default
+-->create a custom validate function for gender
+-->Improve the DB schema-PUT all appropiate validations on each field in schema
+-->Add timestamps to the userschema
