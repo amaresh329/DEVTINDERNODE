@@ -73,3 +73,5 @@ express handles route handlers in a very funny way that if u pass
 -->create a custom validate function for gender
 -->Improve the DB schema-PUT all appropiate validations on each field in schema
 -->Add timestamps to the userschema
+-->Add API level validation on PATCH request & signup API
+-->Data Sanization-Add API validation for each schema

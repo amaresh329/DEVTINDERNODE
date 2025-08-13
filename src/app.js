@@ -140,9 +140,15 @@ app.post("/signup",async(req,res)=>{
    const user=new User(req.body);//which makes our userdata dynamic
    try{
       await user.save();
-      res.send("user data stored successfully")
+      res.status(201).send("user data stored successfully")
    }catch(err){
-      res.status(400).send("Error saving the user:"+err.message)
+      // res.status(400).send("Error saving the user:"+err.message)
+      if (err.code === 11000) { 
+      // This is the MongoDB duplicate key error
+      return res.status(400).send("Email already exists");
+    }
+    res.status(400).send("Error saving the user: " + err.message);
+  
    }
 })
 
@@ -194,11 +200,20 @@ app.delete("/user",async(req,res)=>{
 
 
 //update an user
-app.patch("/user",async(req,res)=>{
-   const userId=req.body._id;
+app.patch("/user/:userId",async(req,res)=>{
+   const userId=req.params?.userId;
    const data=req.body;
    console.log(data);
    try{
+      const allowed_updates=["photoUrl","about","skills","gender","age"]
+      const isUpdateAllowed=Object.keys(data).every((k)=>
+         allowed_updates.includes(k));
+      if(!isUpdateAllowed){
+         throw new Error("update is not allowed");
+      }
+      if(data?.skills.length>10){
+         throw new Error("Skills cannot be more than 10");
+      }
       const user=await User.findByIdAndUpdate(userId, data,{
          new: true, // returns the updated document
          runValidators: true // runs schema validations on the update
